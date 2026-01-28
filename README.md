@@ -31,7 +31,7 @@ This is a simple HTML-based portfolio website that presents my professional prof
 ## Technologies Used
 
 - HTML5
-- CSS3 (inline styling)
+
 
 ## Projects Highlighted
 
