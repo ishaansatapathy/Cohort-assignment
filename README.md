@@ -14,7 +14,7 @@ This is a simple HTML-based portfolio website that presents my professional prof
 ## Screenshots
 
 ### Main Page - Part 1
-![Portfolio Page 1](images/Screenshot%202026-01-27%20174204.png)
+![Portfolio Page 1](images/Screenshot%202026-01-28%20220344.png)
 
 ### Main Page - Part 2
 ![Portfolio Page 2](images/Screenshot%202026-01-28%20220830.png)
