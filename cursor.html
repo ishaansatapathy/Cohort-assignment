@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            --page-pad: 140px;
+        }
+
+        #parent{
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 18px var(--page-pad);
+            box-sizing: border-box;
+        }
+
+        #logo{
+            justify-self: start;
+        }
+
+        #middle{
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            justify-self: center;
+        }
+
+        #corner{
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-self: end;
+        }
+
+        button{
+            font-family: inherit;
+        }
+
+        /* Top nav links */
+        .btn-features,
+        .btn-enterprise,
+        .btn-pricing,
+        .btn-resource{
+            background: transparent;
+            border: 0;
+            color: #ffffff;
+            padding: 8px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 999px;
+        }
+
+        .btn-features:hover,
+        .btn-enterprise:hover,
+        .btn-pricing:hover,
+        .btn-resource:hover{
+            text-decoration: underline;
+            text-underline-offset: 6px;
+        }
+
+        .nav-dropdown{
+            position: relative;
+        }
+
+        .nav-dropdown-menu{
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 360px;
+            padding: 18px 20px;
+            background: rgba(20, 18, 11, 0.95);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 10px;
+            box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 48px;
+            row-gap: 14px;
+            z-index: 50;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu,
+        .nav-dropdown:focus-within .nav-dropdown-menu{
+            display: grid;
+        }
+
+        .nav-dropdown-menu a{
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .nav-dropdown-menu a:hover{
+            color: #ffffff;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+        }
+
+        .btn-signin{
+            border-radius: 999px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #ffffff;
+            padding: 10px 14px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-download{
+            border-radius: 999px;
+            background: #ffffff;
+            color: #0f0e09;
+            border: 0;
+            padding: 10px 14px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        body{
+          background-color: #14120b;
+          font-family: 'Inter',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+
+        section,
+        main{
+            padding: 72px var(--page-pad) 0 var(--page-pad);
+            box-sizing: border-box;
+        }
+
+        p{ color: beige; }
+
+        .hero-kicker{
+            margin: 0 0 14px 0;
+            color: rgba(255,255,255,0.65);
+            font-size: 18px;
+            letter-spacing: 0.2px;
+        }
+
+        .hero-title{
+            margin: 0 0 26px 0;
+            color: #ffffff;
+            font-size: 56px;
+            line-height: 1.06;
+            font-weight: 700;
+        }
+
+        .hero-cta{
+            border-radius: 999px;
+            border: 0;
+            background: #ffffff;
+            color: #0f0e09;
+            padding: 16px 28px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .hero-cta span{
+            display: inline-block;
+            margin-left: 8px;
+            transform: translateY(-1px);
+        }
+
+        #image-1 img{
+            margin-top: 56px;
+        }
+
+        .trusted{
+            margin-top: 70px;
+            text-align: center;
+        }
+
+        .trusted p{
+            margin: 0;
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+        }
+
+        .trusted img{
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            display: block;
+            margin: 22px auto 0;
+        }
+
+        .trusted video{
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            display: block;
+            margin: 22px auto 0;
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .feature-shot{
+            margin-top: 40px;
+        }
+
+        @media (max-width: 900px){
+            :root{ --page-pad: 24px; }
+            .hero-title{ font-size: 40px; }
+            #parent{ grid-template-columns: auto 1fr auto; }
+            #middle{ justify-self: center; }
+        }
+        #cardparent{
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+        #agent{
+            margin-top: 30px;
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 28px;
+            align-items: center;
+            padding: 44px 40px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.10);
+        }
+
+        .agent-copy{
+            max-width: 560px;
+        }
+
+        .agent-copy h2{
+            margin: 0 0 10px 0;
+            color: #ffffff;
+            font-size: clamp(34px, 3.2vw, 44px);
+            line-height: 1.12;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            max-width: 18ch;
+        }
+
+        .agent-copy p{
+            margin: 0 0 12px 0;
+            color: rgba(255,255,255,0.6);
+            font-size: clamp(18px, 1.6vw, 22px);
+            line-height: 1.45;
+            max-width: 54ch;
+        }
+
+        .agent-copy a{
+            color: #ff5a1f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .agent-copy a:hover{
+            text-decoration: underline;
+            text-underline-offset: 6px;
+        }
+
+        .card-box{
+            min-height: 140px;
+            padding: 18px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.10);
+            color: rgba(255,255,255,0.9);
+        }
+        .agent-media{
+            justify-self: end;
+            align-self: stretch;
+            display: flex;
+            align-items: center;
+        }
+
+        .agent-media img{
+            width: 100%;
+            max-width: 720px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 12px;
+        }
+
+        .card-box img{
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 14px;
+            border-radius: 12px;
+        }
+
+        .cards-footer{
+            margin-top: 70px;
+        }
+
+        .cards-footer h2{
+            margin: 0 0 10px 0;
+            color: #ffffff;
+            font-size: 40px;
+            line-height: 1.12;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .cards-footer p{
+            margin: 0;
+            color: rgba(255,255,255,0.6);
+            font-size: 20px;
+            line-height: 1.45;
+            max-width: 70ch;
+        }
+
+        #configparent{
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        #changelogparent{
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .config-box{
+            min-height: 120px;
+            padding: 18px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.10);
+            color: rgba(255,255,255,0.9);
+        }
+
+        .changelog-cta{
+            display: inline-block;
+            margin-top: 10px;
+            color: #ff5a1f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .changelog-cta:hover{
+            text-decoration: underline;
+            text-underline-offset: 6px;
+        }
+
+        .trycursor h1{
+            text-align: center;
+            color: aliceblue;
+            margin-top: 140px;
+            font-size: 56px;
+            line-height: 1.08;
+            font-weight: 700;
+        }
+
+        .trycursor{
+            text-align: center;
+        }
+
+        .trycursor .try-download{
+            margin-top: 18px;
+        }
+
+        .site-footer{
+            margin-top: 120px;
+            padding: 90px var(--page-pad) 44px;
+            box-sizing: border-box;
+            background: radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,0.06), rgba(20,18,11,0.0) 55%),
+                        rgba(20,18,11,0.85);
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .footer-grid{
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 48px;
+        }
+
+        .footer-col h4{
+            margin: 0 0 18px 0;
+            color: rgba(255,255,255,0.55);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .footer-col a{
+            display: block;
+            margin: 0 0 16px 0;
+            color: rgba(255,255,255,0.92);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .footer-col a:hover{
+            text-decoration: underline;
+            text-underline-offset: 6px;
+        }
+
+        .footer-bottom{
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .footer-meta{
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            color: rgba(255,255,255,0.55);
+            font-size: 16px;
+        }
+
+        .footer-controls{
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .footer-pill{
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.10);
+        }
+
+        .footer-iconbtn{
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            border: 0;
+            background: transparent;
+            color: rgba(255,255,255,0.75);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .footer-iconbtn:hover{
+            background: rgba(255,255,255,0.10);
+            color: #ffffff;
+        }
+
+        .footer-lang{
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.10);
+            color: rgba(255,255,255,0.92);
+            padding: 10px 14px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px){
+            #cardparent{ 
+                grid-template-columns: 1fr; 
+            }
+            #agent{ 
+                grid-template-columns: 1fr; 
+                padding: 26px 22px; 
+            }
+            .agent-media{ 
+                justify-self: stretch; 
+            }
+            .cards-footer h2{ 
+                font-size: 32px; 
+            }
+            .cards-footer p{ 
+                font-size: 18px; 
+            }
+            #configparent{ 
+                grid-template-columns: 1fr; 
+            }
+            #changelogparent{ 
+                grid-template-columns: 1fr; 
+            }
+            .trycursor h1{ 
+                font-size: 40px; 
+            }
+            .site-footer{ 
+                padding: 70px var(--page-pad) 36px; 
+            }
+            .footer-grid{ 
+                grid-template-columns: 1fr 1fr; gap: 28px; 
+            }
+        }
+       
+        
+    </style>
+</head>
+<body>
+    <nav>
+    <div id="parent">
+        <div id="logo">
+            <img src="./Screenshot 2026-02-03 162216.png" alt="" width="200px" height="45px">
+        </div>
+        <div id="middle">
+            <button class="btn-features">Features</button>
+            <button class="btn-enterprise">Enterprise</button>
+            <button class="btn-pricing">Pricing</button>
+            <div class="nav-dropdown">
+                <button type="button" class="btn-resource" aria-haspopup="true">Resources</button>
+                <div class="nav-dropdown-menu">
+                    <a href="#">Changelog</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Docs</a>
+                    <a href="#">Community</a>
+                    <a href="#">Learn</a>
+                    <a href="#">Workshops</a>
+                    <a href="#">Forum</a>
+                    <a href="#">Careers</a>
+                </div>
+            </div>
+        </div>
+        <div id="corner">
+            <button class="btn-signin">sign in</button>
+            <button class="btn-download">Download</button>
+        </div>
+    </div>
+    </nav>
+    <main>
+        <p class="hero-kicker">Features</p>
+        <h1 class="hero-title">The best way to build software.</h1>
+        <button type="button" class="hero-cta">Download for Windows <span aria-hidden="true">↓</span></button>
+        
+       <div id="image-1">
+                 <img src="./Screenshot 2026-02-03 220439.png" alt="" style="max-width: 1200px; width: 100%; height: auto; margin: 30px 0; display: block;">
+
+       </div>
+
+      <div class="trusted">
+          <img src="./Screenshot 2026-02-03 232004.png" alt="">
+      </div>
+
+      <div class="trusted feature-shot">
+          <img src="./Screenshot 2026-02-03 233415.png" alt="">
+      </div>
+
+      <div class="trusted feature-shot">
+          <video autoplay loop muted playsinline preload="auto">
+              <source src="./20260203-1809-04.8355805.mp4" type="video/mp4">
+          </video>
+      </div>
+      <div id="cardparent">
+                <div id="childone" class="card-box">
+                    <h3>Multi-line edits</h3>
+                    <p>Get suggested edits across multiple lines.</p>
+                    <img src="./Screenshot 2026-02-04 002353.png" alt="" />
+                </div>
+                <div id="childtwo" class="card-box">
+                    <h3>Smart rewrites</h3>
+                    <p>Type naturally, Cursor will finish your thought.</p>
+                    <img src="./Screenshot 2026-02-04 002828.png" alt="" />
+                </div>
+                <div id="childthree" class="card-box">
+                    <h3>Tab, Tab, Tab</h3>
+                    <p>Fly through edits at your cursor and across files.</p>
+                    <img src="./Screenshot 2026-02-04 003117.png" alt="" />
+                </div>
+                <div id="agent">
+                    <div class="agent-copy">
+                        <h2>Across the entire development process</h2>
+                        <p>Start tasks from Slack, issue tracker, mobile and more. Finish off in the IDE.</p>
+                        <a href="#">Try agents on web and mobile ↗</a>
+                    </div>
+                    <div class="agent-media">
+                        <img src="./Screenshot 2026-02-04 004922.png" alt="">
+                    </div>
+                </div>
+                <div id="childfour" class="card-box">
+                    <h3>Codebase answers</h3>
+                    <p>Ask questions and get grounded answers from your project.</p>
+                    <img src="./Screenshot 2026-02-04 002353.png" alt="" />
+                </div>
+                <div id="childfive" class="card-box">
+                    <h3>Faster debugging</h3>
+                    <p>Explain errors quickly and suggest fixes in context.</p>
+                    <img src="./Screenshot 2026-02-04 002828.png" alt="" />
+                </div>
+                <div id="childsix" class="card-box">
+                    <h3>Refactors that stick</h3>
+                    <p>Make safe structural changes while keeping behavior intact.</p>
+                    <img src="./Screenshot 2026-02-04 003117.png" alt="" />
+                </div>
+      </div>
+
+      <div class="cards-footer">
+          <h2>Powerful, yet flexible</h2>
+          <p>Configure Cursor so you can do your best work.</p>
+      </div>
+
+      <div id="configparent">
+          <div id="configone" class="config-box"></div>
+          <div id="configtwo" class="config-box"></div>
+          <div id="configthree" class="config-box"></div>
+          <div id="configfour" class="config-box"></div>
+      </div>
+      <h2 style="color: white; font-size: larger;margin-top: 170px;">Changelog</h2>
+
+      <div id="changelogparent">
+          <div id="changelogone" class="config-box"></div>
+          <div id="changelogtwo" class="config-box"></div>
+          <div id="changelogthree" class="config-box"></div>
+          <div id="changelogfour" class="config-box"></div>
+      </div>
+
+      <a class="changelog-cta" href="#">See what's new in Cursor →</a>
+      <div class="trycursor">
+                <h1>Try Cursor Now</h1>
+                <button type="button" class="hero-cta try-download">Download for Windows <span aria-hidden="true">↓</span></button>
+      </div>
+
+    </main>
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="#">Features</a>
+                <a href="#">Enterprise</a>
+                <a href="#">Web Agents</a>
+                <a href="#">Bugbot</a>
+                <a href="#">CLI</a>
+                <a href="#">Pricing</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="#">Download</a>
+                <a href="#">Changelog</a>
+                <a href="#">Docs</a>
+                <a href="#">Learn</a>
+                <a href="#">Forum</a>
+                <a href="#">Status</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">Careers</a>
+                <a href="#">Blog</a>
+                <a href="#">Community</a>
+                <a href="#">Workshops</a>
+                <a href="#">Students</a>
+                <a href="#">Brand</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Data Use</a>
+                <a href="#">Security</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="#">X</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-meta">
+                <span>© 2026 Cursor</span>
+                <span>☑ SOC 2 Certified</span>
+            </div>
+
+            <div class="footer-controls">
+                <div class="footer-pill" aria-label="Theme controls">
+                    <button type="button" class="footer-iconbtn" aria-label="Display">▢</button>
+                    <button type="button" class="footer-iconbtn" aria-label="Light">☼</button>
+                    <button type="button" class="footer-iconbtn" aria-label="Dark">☾</button>
+                </div>
+                <button type="button" class="footer-lang">English ▾</button>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
