@@ -122,7 +122,42 @@
         body{
           background-color: #14120b;
           font-family: 'Inter',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          margin: 0;
 
+        }
+
+        /* Sticky navbar (CSS-only) */
+        nav{
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(20, 18, 11, 0.55);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: saturate(1.15) blur(8px);
+            -webkit-backdrop-filter: saturate(1.15) blur(8px);
+        }
+
+        /* Scroll animation (CSS-only). Supported in modern Chrome/Edge. */
+        @supports (animation-timeline: scroll()){
+            @keyframes navScroll{
+                from{
+                    background: rgba(20, 18, 11, 0.35);
+                    box-shadow: 0 0 0 rgba(0,0,0,0);
+                }
+                to{
+                    background: rgba(20, 18, 11, 0.88);
+                    box-shadow: 0 12px 34px rgba(0,0,0,0.35);
+                }
+            }
+
+            nav{
+                animation-name: navScroll;
+                animation-duration: 1s;
+                animation-timing-function: linear;
+                animation-fill-mode: both;
+                animation-timeline: scroll();
+                animation-range: 0px 140px;
+            }
         }
 
         section,
@@ -292,34 +327,6 @@
             border-radius: 12px;
         }
 
-        .cards-footer{
-            margin-top: 70px;
-        }
-
-        .cards-footer h2{
-            margin: 0 0 10px 0;
-            color: #ffffff;
-            font-size: 40px;
-            line-height: 1.12;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .cards-footer p{
-            margin: 0;
-            color: rgba(255,255,255,0.6);
-            font-size: 20px;
-            line-height: 1.45;
-            max-width: 70ch;
-        }
-
-        #configparent{
-            margin-top: 40px;
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 18px;
-        }
-
         #changelogparent{
             margin-top: 40px;
             display: grid;
@@ -343,6 +350,48 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 14px;
+        }
+
+        .changelog-item{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .changelog-top{
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: rgba(255,255,255,0.55);
+            font-weight: 600;
+        }
+
+        .changelog-pill{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.8);
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .changelog-date{
+            font-size: 18px;
+        }
+
+        .changelog-title{
+            margin: 0;
+            color: rgba(255,255,255,0.95);
+            font-size: 22px;
+            line-height: 1.25;
+            font-weight: 700;
+            letter-spacing: -0.01em;
         }
 
         .changelog-cta:hover{
@@ -467,21 +516,15 @@
             #cardparent{ 
                 grid-template-columns: 1fr; 
             }
+            #multisection{
+                justify-content: center;
+            }
             #agent{ 
                 grid-template-columns: 1fr; 
                 padding: 26px 22px; 
             }
             .agent-media{ 
                 justify-self: stretch; 
-            }
-            .cards-footer h2{ 
-                font-size: 32px; 
-            }
-            .cards-footer p{ 
-                font-size: 18px; 
-            }
-            #configparent{ 
-                grid-template-columns: 1fr; 
             }
             #changelogparent{ 
                 grid-template-columns: 1fr; 
@@ -494,6 +537,169 @@
             }
             .footer-grid{ 
                 grid-template-columns: 1fr 1fr; gap: 28px; 
+            }
+        }
+        #multisection{
+            display:flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 78px;
+        }
+
+        #multisectionchild{
+            padding: 18px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.10);
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .multisection-copy h2{
+            margin: 0 0 10px 0;
+            color: #ffffff;
+            font-size: clamp(30px, 2.6vw, 44px);
+            line-height: 1.12;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .multisection-copy p{
+            margin: 0 0 18px 0;
+            color: rgba(255,255,255,0.6);
+            font-size: 20px;
+            line-height: 1.45;
+            max-width: 52ch;
+        }
+
+        .multisection-copy a{
+            display: inline-block;
+            color: #ff5a1f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .multisection-copy a:hover{
+            text-decoration: underline;
+            text-underline-offset: 6px;
+        }
+
+        .multisection-media{
+            justify-self: end;
+        }
+
+        .multisection-media img{
+            width: 750px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 900px){
+            #multisectionchild{
+                grid-template-columns: 1fr;
+            }
+            .multisection-media{
+                justify-self: stretch;
+            }
+        }
+
+        #testimonials{
+            margin-top: 84px;
+        }
+
+        #testimonials h2{
+            margin: 0 0 26px 0;
+            text-align: center;
+            color: #ffffff;
+            font-size: clamp(30px, 3vw, 44px);
+            line-height: 1.15;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        #testimonials-grid{
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .testimonial-card{
+            padding: 18px 18px 16px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.10);
+            min-height: 190px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .testimonial-quote{
+            margin: 0 0 14px 0;
+            color: rgba(255,255,255,0.78);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .testimonial-person{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .testimonial-avatar{
+            width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.9);
+            background: linear-gradient(135deg, rgba(255,90,31,0.85), rgba(255,255,255,0.16));
+            border: 1px solid rgba(255,255,255,0.14);
+            flex: 0 0 auto;
+        }
+
+        .testimonial-meta{
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .testimonial-name{
+            color: rgba(255,255,255,0.92);
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .testimonial-title{
+            color: rgba(255,255,255,0.55);
+            font-size: 11px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @media (max-width: 900px){
+            #testimonials{
+                margin-top: 64px;
+            }
+            #testimonials-grid{
+                grid-template-columns: 1fr;
+            }
+            .testimonial-card{
+                min-height: unset;
             }
         }
        
@@ -553,6 +759,90 @@
               <source src="./20260203-1809-04.8355805.mp4" type="video/mp4">
           </video>
       </div>
+      <div id="multisection">
+        <div id="multisectionchild">
+            <div class="multisection-copy">
+                <h2>Everywhere software gets built</h2>
+                <p>Cursor is in GitHub reviewing your PRs, a teammate in Slack, and anywhere else you work.</p>
+                <a href="#">Learn about Cursor's ecosystem <span aria-hidden="true">→</span></a>
+            </div>
+            <div class="multisection-media">
+                <img src="./Screenshot 2026-02-04 174211.png" alt="">
+            </div>
+        </div>
+      </div>
+
+      <section id="testimonials">
+          <h2>The new way to build software.</h2>
+          <div id="testimonials-grid">
+              <div class="testimonial-card">
+                  <p class="testimonial-quote">It was night and day from one batch to another, adoption went from single digits to over 80%. It just spread like wildfire; all the best builders were using Cursor.</p>
+                  <div class="testimonial-person">
+                      <div class="testimonial-avatar" aria-hidden="true">DH</div>
+                      <div class="testimonial-meta">
+                          <div class="testimonial-name">Diana Hu</div>
+                          <div class="testimonial-title">General Partner, Y Combinator</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="testimonial-card">
+                  <p class="testimonial-quote">The most useful AI tool that I currently pay for, hands down, is Cursor. It's fast, autocompletes when and where you need it to, handles brackets properly, sensible keyboard shortcuts, bring-your-own-model... everything is well put together.</p>
+                  <div class="testimonial-person">
+                      <div class="testimonial-avatar" aria-hidden="true">S</div>
+                      <div class="testimonial-meta">
+                          <div class="testimonial-name">shadcn</div>
+                          <div class="testimonial-title">Creator of shadcn/ui</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="testimonial-card">
+                  <p class="testimonial-quote">The best LLM applications have an autonomy slider: you control how much independence to give the AI. In Cursor, you can do Tab completion, Cmd+K for targeted edits, or you can let it rip with the full autonomy agentic version.</p>
+                  <div class="testimonial-person">
+                      <div class="testimonial-avatar" aria-hidden="true">AK</div>
+                      <div class="testimonial-meta">
+                          <div class="testimonial-name">Andrej Karpathy</div>
+                          <div class="testimonial-title">CEO, Eureka Labs</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="testimonial-card">
+                  <p class="testimonial-quote">Cursor quickly grew from hundreds to thousands of extremely enthusiastic Stripe employees. We spend more on R&D and software creation than any other undertaking, and there's significant economic outcomes when making that process more efficient and productive.</p>
+                  <div class="testimonial-person">
+                      <div class="testimonial-avatar" aria-hidden="true">PC</div>
+                      <div class="testimonial-meta">
+                          <div class="testimonial-name">Patrick Collison</div>
+                          <div class="testimonial-title">Co-Founder &amp; CEO, Stripe</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="testimonial-card">
+                  <p class="testimonial-quote">It's official.<br><br>I hate vim coding.<br>I love Cursor tab coding.<br><br>It's wild.</p>
+                  <div class="testimonial-person">
+                      <div class="testimonial-avatar" aria-hidden="true">TP</div>
+                      <div class="testimonial-meta">
+                          <div class="testimonial-name">ThePrimeagen</div>
+                          <div class="testimonial-title">@ThePrimeagen</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="testimonial-card">
+                  <p class="testimonial-quote">It's definitely becoming more fun to be a programmer! It's less about digging through pages and more about what you want to happen. We are at the 1% of what's possible, and it's in interactive experiences like Cursor where models like GPT-5 shine brightest.</p>
+                  <div class="testimonial-person">
+                      <div class="testimonial-avatar" aria-hidden="true">GB</div>
+                      <div class="testimonial-meta">
+                          <div class="testimonial-name">Greg Brockman</div>
+                          <div class="testimonial-title">President, OpenAI</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
       <div id="cardparent">
                 <div id="childone" class="card-box">
                     <h3>Multi-line edits</h3>
@@ -596,24 +886,43 @@
                 </div>
       </div>
 
-      <div class="cards-footer">
-          <h2>Powerful, yet flexible</h2>
-          <p>Configure Cursor so you can do your best work.</p>
-      </div>
-
-      <div id="configparent">
-          <div id="configone" class="config-box"></div>
-          <div id="configtwo" class="config-box"></div>
-          <div id="configthree" class="config-box"></div>
-          <div id="configfour" class="config-box"></div>
-      </div>
       <h2 style="color: white; font-size: larger;margin-top: 170px;">Changelog</h2>
 
       <div id="changelogparent">
-          <div id="changelogone" class="config-box"></div>
-          <div id="changelogtwo" class="config-box"></div>
-          <div id="changelogthree" class="config-box"></div>
-          <div id="changelogfour" class="config-box"></div>
+          <div id="changelogone" class="config-box">
+              <div class="changelog-item">
+                  <div class="changelog-top">
+                      <span class="changelog-pill">2.4</span>
+                      <span class="changelog-date">Jan 22, 2026</span>
+                  </div>
+                  <h3 class="changelog-title">Subagents, Skills, and Image Generation</h3>
+              </div>
+          </div>
+          <div id="changelogtwo" class="config-box">
+              <div class="changelog-item">
+                  <div class="changelog-top">
+                      <span class="changelog-date">Jan 16, 2026</span>
+                  </div>
+                  <h3 class="changelog-title">CLI Agent Modes and Cloud Handoff</h3>
+              </div>
+          </div>
+          <div id="changelogthree" class="config-box">
+              <div class="changelog-item">
+                  <div class="changelog-top">
+                      <span class="changelog-date">Jan 8, 2026</span>
+                  </div>
+                  <h3 class="changelog-title">New CLI Features and Improved CLI Performance</h3>
+              </div>
+          </div>
+          <div id="changelogfour" class="config-box">
+              <div class="changelog-item">
+                  <div class="changelog-top">
+                      <span class="changelog-pill">2.3</span>
+                      <span class="changelog-date">Dec 22, 2025</span>
+                  </div>
+                  <h3 class="changelog-title">Layout Customization and Stability Improvements</h3>
+              </div>
+          </div>
       </div>
 
       <a class="changelog-cta" href="#">See what's new in Cursor →</a>
