@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        /* CSS variables */
         :root{
             --page-pad: 140px;
         }
 
+        /* Navbar layout */
         #parent{
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -65,6 +67,7 @@
             position: relative;
         }
 
+                /* Dropdown menu */
         .nav-dropdown-menu{
             position: absolute;
             top: calc(100% + 12px);
@@ -137,7 +140,7 @@
             -webkit-backdrop-filter: saturate(1.15) blur(8px);
         }
 
-        /* Scroll animation (CSS-only). Supported in modern Chrome/Edge. */
+        /* Scroll animation */
         @supports (animation-timeline: scroll()){
             @keyframes navScroll{
                 from{
@@ -236,6 +239,7 @@
             margin-top: 40px;
         }
 
+        /* Responsive */
         @media (max-width: 900px){
             :root{ --page-pad: 24px; }
             .hero-title{ font-size: 40px; }
@@ -608,6 +612,7 @@
             }
         }
 
+        /* Testimonials section: 3-column card grid on desktop, 1-column on mobile */
         #testimonials{
             margin-top: 84px;
         }
@@ -707,6 +712,7 @@
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav>
     <div id="parent">
         <div id="logo">
@@ -737,28 +743,35 @@
     </div>
     </nav>
     <main>
+        <!-- Hero section -->
         <p class="hero-kicker">Features</p>
         <h1 class="hero-title">The best way to build software.</h1>
         <button type="button" class="hero-cta">Download for Windows <span aria-hidden="true">↓</span></button>
         
+       <!-- Feature image -->
        <div id="image-1">
                  <img src="./Screenshot 2026-02-03 220439.png" alt="" style="max-width: 1200px; width: 100%; height: auto; margin: 30px 0; display: block;">
 
        </div>
 
+      <!-- Trusted by (image) -->
       <div class="trusted">
           <img src="./Screenshot 2026-02-03 232004.png" alt="">
       </div>
 
+      <!-- Feature shot (image) -->
       <div class="trusted feature-shot">
           <img src="./Screenshot 2026-02-03 233415.png" alt="">
       </div>
 
+      <!-- Feature shot (video) -->
       <div class="trusted feature-shot">
           <video autoplay loop muted playsinline preload="auto">
               <source src="./20260203-1809-04.8355805.mp4" type="video/mp4">
           </video>
       </div>
+
+      <!-- Split section (text + image) -->
       <div id="multisection">
         <div id="multisectionchild">
             <div class="multisection-copy">
@@ -772,6 +785,7 @@
         </div>
       </div>
 
+      <!-- Testimonials -->
       <section id="testimonials">
           <h2>The new way to build software.</h2>
           <div id="testimonials-grid">
@@ -843,6 +857,7 @@
           </div>
       </section>
 
+    <!-- Feature cards + agent section -->
       <div id="cardparent">
                 <div id="childone" class="card-box">
                     <h3>Multi-line edits</h3>
@@ -886,6 +901,7 @@
                 </div>
       </div>
 
+            <!-- Changelog -->
       <h2 style="color: white; font-size: larger;margin-top: 170px;">Changelog</h2>
 
       <div id="changelogparent">
@@ -926,12 +942,14 @@
       </div>
 
       <a class="changelog-cta" href="#">See what's new in Cursor →</a>
+    <!-- Final call-to-action -->
       <div class="trycursor">
                 <h1>Try Cursor Now</h1>
                 <button type="button" class="hero-cta try-download">Download for Windows <span aria-hidden="true">↓</span></button>
       </div>
 
     </main>
+    <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-grid">
             <div class="footer-col">
